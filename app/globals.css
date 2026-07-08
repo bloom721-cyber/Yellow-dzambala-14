@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+  background: #120b07; /* never a blank white screen — ever */
+  overscroll-behavior: none;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+textarea,
+input {
+  user-select: text;
+}
+
+/* Ken-burns drift, quieted when motion is reduced. */
+.motion-safe-ken-burns {
+  animation: ken-burns 34s cubic-bezier(0.33, 0, 0.2, 1) alternate infinite;
+}
+
+/* Reduced motion — honoured via system preference AND the in-app
+   setting, which writes <html data-motion="reduced">. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html[data-motion='reduced'] *,
+html[data-motion='reduced'] *::before,
+html[data-motion='reduced'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* A thin gold scrollbar where scrolling exists at all. */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(138, 95, 50, 0.45);
+  border-radius: 2px;
+}
